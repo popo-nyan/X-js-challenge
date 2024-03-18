@@ -5,11 +5,7 @@ const _element = {
     },
     setAttribute: function (tag, value) {
     },
-    innerText: '',
-    innerHTML: '',
-    outerHTML: '',
-    tagName: '',
-    textContent: '',
+
 };
 _element['children'] = [_element];
 _element['lastElementChild'] = _element;
@@ -21,4 +17,4 @@ document = {
     getElementsByTagName: function (tag) {
         return [_element];
     }
-}
+};
