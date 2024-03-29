@@ -1,4 +1,4 @@
-# Twitter(旧X)のAndroid版JSチャレンジ
+# X(旧Twitter)のAndroid版JSチャレンジ
 
 ```bash
 pip install pythonmonkey
