@@ -12,10 +12,10 @@ def main():
                           method="GET")
     with request.urlopen(req) as response:
         response_body = response.read()
-    
+
     # 参考 https://github.com/tsukumijima/tweepy-authlib/blob/de0cd2bb522601ad5ff2d51c7c697215943b180b/tweepy_authlib/CookieSessionUserHandler.py#L421-L500
     mock = """
-    const _element = {
+    let _element = {
         appendChild: function (tag) {
         },
         removeChild: function (tag) {
@@ -23,9 +23,9 @@ def main():
         setAttribute: function (tag, value) {
         },
     };
-    _element['children'] = [_element];
-    _element['lastElementChild'] = _element;
-    _element['parentNode'] = _element;
+    _element.children = [_element];
+    _element.lastElementChild = _element;
+    _element.parentNode = _element;
     document = {
         createElement: function (tag) {
             return _element;
@@ -35,7 +35,7 @@ def main():
         }
     };
     """
-    
+
     js_inst = response_body.decode().split("\n")[1]
     js_inst_function_name = re.search(r"function [a-zA-Z]+", js_inst).group(0).replace("function ", "")
     js_inst = js_inst.replace(f"{js_inst_function_name}();", "").replace(f"function {js_inst_function_name}()", "() =>")
